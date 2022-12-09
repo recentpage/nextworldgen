@@ -6,9 +6,17 @@ import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Home() {
   const session = useSession();
+  function sign(okcl: string) {
+    if (okcl == "login") {
+      signIn;
+    } else if (okcl == "logout") {
+      signOut;
+    }
+  }
   console.log(session);
   if (session.data == null) {
-    return <button onClick={signIn}>Login</button>;
+    // @ts-ignore
+    return <a onClick={signIn}>Login</a>;
   }
   return (
     <div className={styles.container}>
@@ -31,6 +39,7 @@ export default function Home() {
 
         <div>
           <h1>
+          {/* @ts-ignore */}
             <button onClick={signOut}>Logout</button>
           </h1>
         </div>
